@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "firebase emulators:exec --project=demo-project --ui 'ng serve'",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -16,6 +16,7 @@
     "@angular/common": "^16.0.0",
     "@angular/compiler": "^16.0.0",
     "@angular/core": "^16.0.0",
+    "@angular/fire": "^7.6.1",
     "@angular/forms": "^16.0.0",
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
@@ -23,6 +24,7 @@
     "@types/jest": "^29.5.2",
     "bootstrap": "^4.1.1",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.12",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },

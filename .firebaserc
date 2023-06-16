@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "income-expense-app-ac975": {
+      "hosting": {
+        "income-expense-app": [
+          "income-expense-app-ac975"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "income-expense-app-ac975"
+  }
+}

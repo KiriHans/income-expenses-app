@@ -39,7 +39,13 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link cursor" routerLink="/login">
+      <a
+        role="link"
+        aria-hidden="true"
+        (click)="logOut()"
+        (keyup)="logOut()"
+        class="nav-link cursor"
+      >
         <i class="menu-icon fa fa-sign-out-alt"></i>
         <span class="menu-title">Log out</span>
       </a>
