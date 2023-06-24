@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { LoginActions } from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,11 +12,9 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styles: [],
 })
 export class SidebarComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private store: Store) {}
 
   logOut(): void {
-    this.authService.logoutUser().then(() => {
-      this.router.navigate(['/login']);
-    });
+    this.store.dispatch(LoginActions.logout());
   }
 }

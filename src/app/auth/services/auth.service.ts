@@ -1,42 +1,60 @@
 import { Injectable, inject } from '@angular/core';
 import {
   Auth,
-  User,
   UserCredential,
   authState,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from '@angular/fire/auth';
-import { Firestore, doc, setDoc } from '@angular/fire/firestore';
-import { Observable, map } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+import { Observable, map, of, switchMap } from 'rxjs';
 import { UserApp } from 'src/app/core/models/users.model';
+import { BrowserStorageService } from 'src/app/core/services/browser-storage.service';
+import { AuthActions } from '../../store/actions/auth.actions';
+import { UserFirebaseService } from './user-firebase.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly auth = inject(Auth);
-  private firestore: Firestore = inject(Firestore);
-  private readonly authState$: Observable<User | null> = authState(this.auth);
+  private readonly store = inject(Store);
+  private readonly userFirebaseService = inject(UserFirebaseService);
+  private readonly localStorage = inject(BrowserStorageService);
+  private readonly router = inject(Router);
 
-  initAuthListener(): void {
-    this.authState$.subscribe({ next: console.log });
+  private readonly authState$ = authState(this.auth);
+  user$ = this.authState$.pipe(
+    switchMap((user) => (user ? this.userFirebaseService.get(user.uid) : of(null)))
+  );
+
+  initAuth(): void {
+    if (!window.location.hash) {
+      this.localStorage.setItem('PATH', window.location.pathname);
+    }
+    this.store.dispatch(AuthActions.getUser());
   }
 
-  createUser(name: string, email: string, password: string): Promise<void | UserCredential> {
-    return createUserWithEmailAndPassword(this.auth, email, password).then(({ user }) => {
-      const newUser = new UserApp(user.uid, name, email);
-
-      return setDoc(doc(this.firestore, `${user.uid}/user`), { ...newUser });
+  async createUser(name: string, email: string, password: string) {
+    const { user } = await createUserWithEmailAndPassword(this.auth, email, password);
+    await updateProfile(user, {
+      displayName: name,
     });
+
+    const newUser = new UserApp(user.uid, name, email);
+    return this.userFirebaseService.create(newUser), newUser;
   }
 
   loginUser(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  logoutUser(): Promise<void> {
-    return this.auth.signOut();
+  async logoutUser() {
+    await this.auth.signOut();
+    return this.router.navigate(['/login']);
   }
 
   isAuth(): Observable<boolean> {

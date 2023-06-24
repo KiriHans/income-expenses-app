@@ -1,4 +1,10 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  ApplicationConfig,
+  importProvidersFrom,
+  inject,
+  isDevMode,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -12,10 +18,24 @@ import {
   initializeFirestore,
   connectFirestoreEmulator,
 } from '@angular/fire/firestore';
+import { provideState, provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { metaReducers, reducers } from './store';
+import { uiFeature } from './shared/store/ui.reducer';
+import { provideEffects } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { AuthService } from './auth/services/auth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => {
+        const auth = inject(AuthService);
+        auth.initAuth();
+      },
+    },
     importProvidersFrom(provideFirebaseApp(() => initializeApp(environment.firebase))),
     importProvidersFrom(
       provideAuth(() => {
@@ -38,5 +58,9 @@ export const appConfig: ApplicationConfig = {
         return getFirestore();
       })
     ),
+    provideStore(reducers, { metaReducers }),
+    provideState(uiFeature),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideEffects(AuthEffects),
   ],
 };
