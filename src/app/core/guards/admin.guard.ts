@@ -9,6 +9,7 @@ export const adminGuard: CanActivateFn = () => {
 
   return authService.isAuth().pipe(
     tap(console.log),
+    tap(() => console.log('aa')),
     map((isAuth) => !isAuth || router.createUrlTree(['']))
   );
 };

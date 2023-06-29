@@ -1,12 +1,12 @@
 import { Action } from '@ngrx/store';
-import { initialState, userReducer } from 'src/app/store/reducers/auth.reducer';
+import { reducer, initialState } from './income-expense.reducer';
 
-describe('Auth Reducer', () => {
+describe('IncomeExpense Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as Action;
 
-      const result = userReducer(initialState, action);
+      const result = reducer(initialState, action);
 
       expect(result).toBe(initialState);
     });

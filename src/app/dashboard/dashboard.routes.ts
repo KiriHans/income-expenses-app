@@ -6,7 +6,6 @@ import { authGuard } from '../core/guards/auth.guard';
 export default [
   {
     path: '',
-    pathMatch: 'full',
     component: DashboardComponent,
     children: INCOME_EXPENSES_ROUTES,
     canActivate: [authGuard],

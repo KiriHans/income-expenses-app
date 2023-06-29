@@ -2,7 +2,7 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { AuthActions, LoginActions, RegisterActions } from '../actions/auth.actions';
 import { UserApp } from 'src/app/core/models/users.model';
 
-export const authFeatureKey = 'auth';
+export const authFeatureKey = 'user';
 
 export interface State extends UserApp {
   loading: boolean;

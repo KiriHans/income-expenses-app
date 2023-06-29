@@ -2,18 +2,18 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { UiEffects } from './ui.effects';
+import { IncomeExpenseEffects } from './income-expense.effects';
 
-describe('UiEffects', () => {
+describe('IncomeExpenseEffects', () => {
   let actions$: Observable<unknown>;
-  let effects: UiEffects;
+  let effects: IncomeExpenseEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UiEffects, provideMockActions(() => actions$)],
+      providers: [IncomeExpenseEffects, provideMockActions(() => actions$)],
     });
 
-    effects = TestBed.inject(UiEffects);
+    effects = TestBed.inject(IncomeExpenseEffects);
   });
 
   it('should be created', () => {

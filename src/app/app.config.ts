@@ -18,13 +18,14 @@ import {
   initializeFirestore,
   connectFirestoreEmulator,
 } from '@angular/fire/firestore';
-import { provideState, provideStore } from '@ngrx/store';
+import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { metaReducers, reducers } from './store';
-import { uiFeature } from './shared/store/ui.reducer';
 import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { AuthService } from './auth/services/auth.service';
+import { IncomeExpenseEffects } from './store/effects/income-expense.effects';
+import { UiEffects } from './shared/store/ui.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -59,8 +60,8 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideStore(reducers, { metaReducers }),
-    provideState(uiFeature),
+
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects(AuthEffects),
+    provideEffects([AuthEffects, IncomeExpenseEffects, UiEffects]),
   ],
 };
