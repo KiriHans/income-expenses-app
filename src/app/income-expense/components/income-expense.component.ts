@@ -1,11 +1,12 @@
 import { Component, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IncomeExpense } from 'src/app/core/models/income-expenses.model';
+import { IncomeExpense, IncomeExpenseType } from 'src/app/core/models/income-expenses.model';
 import { IncomeExpenseService } from '../services/income-expense.service';
 import { Store } from '@ngrx/store';
 import { authFeature } from 'src/app/store/reducers/auth.reducer';
 import { IncomeExpenseActions } from 'src/app/store/actions/income-expense.actions';
+import { incomeExpenseFeature } from 'src/app/store/reducers/income-expense.reducer';
 
 @Component({
   selector: 'app-income-expense',
@@ -15,34 +16,28 @@ import { IncomeExpenseActions } from 'src/app/store/actions/income-expense.actio
   styles: [],
 })
 export class IncomeExpenseComponent implements OnInit {
-  userId!: Signal<string | null>;
-  incomeForm!: FormGroup;
-  type: 'income' | 'outcome' = 'income';
+  isLoading!: Signal<boolean>;
 
-  constructor(
-    private fb: FormBuilder,
-    private incomeExpenseService: IncomeExpenseService,
-    private store: Store
-  ) {}
+  incomeForm!: FormGroup;
+  type: IncomeExpenseType = 'income';
+
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.incomeForm = this.fb.group({
-      description: ['', Validators.required],
+      description: ['', [Validators.required, Validators.maxLength(100)]],
       amount: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.min(0)]],
     });
 
-    this.userId = this.store.selectSignal(authFeature.selectId);
+    this.isLoading = this.store.selectSignal(incomeExpenseFeature.selectLoading);
   }
 
   save() {
-    const userId = this.userId();
-
     if (this.incomeForm.invalid) return;
-    if (!userId) return;
 
     const { description, amount } = this.incomeForm.value;
-    const incomeExpense = new IncomeExpense(description, amount, this.type, userId);
+    const incomeExpense = new IncomeExpense(description, amount, this.type);
 
-    this.store.dispatch(IncomeExpenseActions.createIncomeExpenses({ userId, incomeExpense }));
+    this.store.dispatch(IncomeExpenseActions.createIncomeExpenses({ incomeExpense }));
   }
 }

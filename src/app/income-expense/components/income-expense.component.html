@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Add Income / Expenses</h4>
-        <p class="card-description">Especifique el monto y el tipo</p>
+        <p class="card-description">Specify amount and type</p>
 
         <form [formGroup]="incomeForm" (ngSubmit)="save()">
           <div class="form-group">
@@ -15,6 +15,9 @@
               name="description"
               formControlName="description"
             />
+            <p style="color: rgb(71, 71, 71); font-size: 0.7rem" class="pt-2">
+              It must be less than 100 characters.
+            </p>
           </div>
 
           <div class="form-group">
@@ -26,7 +29,9 @@
               name="amount"
               formControlName="amount"
             />
-            <p>It must be a positive amount</p>
+            <p style="color: rgb(71, 71, 71); font-size: 0.7rem" class="pt-2">
+              It must be a positive amount.
+            </p>
           </div>
 
           <div class="form-group">
@@ -34,7 +39,7 @@
             <br />
             <button
               *ngIf="type === 'income'; else outcomeButton"
-              (click)="type = 'outcome'"
+              (click)="type = 'expense'"
               type="button"
               class="btn btn-primary btn-block"
             >
@@ -42,25 +47,27 @@
             </button>
             <ng-template #outcomeButton>
               <button (click)="type = 'income'" type="button" class="btn btn-warning btn-block">
-                Egreso
+                Expense
               </button>
             </ng-template>
           </div>
 
           <hr />
-          <button [disabled]="incomeForm.invalid" type="submit" class="btn btn-success mr-2">
+          <button
+            *ngIf="!isLoading()"
+            [disabled]="incomeForm.invalid"
+            type="submit"
+            class="btn btn-success mr-2"
+          >
             <i class="fa fa-save"></i>
             Add
           </button>
+          <button *ngIf="isLoading()" [disabled]="true" type="button" class="btn btn-success mr-2">
+            <i class="fa fa-spin fa-sync"></i>
+            Waiting...
+          </button>
 
-          <!-- 
-              <button disabled class="btn btn-success mr-2">
-                <i class="fa fa-spin fa-sync"></i>
-                Espere por favor...
-              </button> 
-            -->
-
-          <button type="reset" class="btn btn-light">Cancel</button>
+          <button [disabled]="isLoading()" type="reset" class="btn btn-light">Cancel</button>
         </form>
       </div>
     </div>

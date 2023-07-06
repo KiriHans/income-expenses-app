@@ -11,14 +11,13 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { UserApp } from 'src/app/core/models/users.model';
-import { userConverter } from 'src/app/core/user-data-converter';
+import { userConverter } from 'src/app/core/utils/user-data-converter';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserFirebaseService {
   private readonly firestore = inject(Firestore);
-  private readonly userCollection = collection(this.firestore, 'users');
 
   get(id: string): Observable<DocumentData> {
     const userDocumentReference = doc(this.firestore, `users`, `${id}`);

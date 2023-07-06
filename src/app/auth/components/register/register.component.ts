@@ -1,12 +1,12 @@
 import { Component, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Store } from '@ngrx/store';
-import { uiFeature } from 'src/app/shared/store/ui.reducer';
 
 import { RegisterActions } from '../../../store/actions/auth.actions';
+import { uiFeature } from 'src/app/store/reducers/ui.reducer';
+import { authFeature } from 'src/app/store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-register',
@@ -19,12 +19,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   isLoading!: Signal<boolean>;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private store: Store,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -33,7 +28,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.isLoading = this.store.selectSignal(uiFeature.selectIsLoading);
+    this.isLoading = this.store.selectSignal(authFeature.selectLoading);
   }
 
   createUser(): void {

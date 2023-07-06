@@ -1,11 +1,10 @@
 import { Component, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Store } from '@ngrx/store';
-import { uiFeature } from 'src/app/shared/store/ui.reducer';
 import { LoginActions } from '../../../store/actions/auth.actions';
+import { authFeature } from 'src/app/store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +17,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading!: Signal<boolean>;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private store: Store,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -31,7 +25,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.isLoading = this.store.selectSignal(uiFeature.selectIsLoading);
+    this.isLoading = this.store.selectSignal(authFeature.selectLoading);
   }
 
   loginUser() {

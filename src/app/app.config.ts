@@ -9,23 +9,18 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 
-import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
-import {
-  provideFirestore,
-  getFirestore,
-  initializeFirestore,
-  connectFirestoreEmulator,
-} from '@angular/fire/firestore';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { metaReducers, reducers } from './store';
+import { metaReducersRoot, reducers } from './store';
 import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { AuthService } from './auth/services/auth.service';
 import { IncomeExpenseEffects } from './store/effects/income-expense.effects';
-import { UiEffects } from './shared/store/ui.effects';
+import { UiEffects } from './store/effects/ui.effects';
+
+import { NgChartsModule } from 'ng2-charts';
+
+import { FIREBASE_CONFIG } from './firebase.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -37,30 +32,10 @@ export const appConfig: ApplicationConfig = {
         auth.initAuth();
       },
     },
-    importProvidersFrom(provideFirebaseApp(() => initializeApp(environment.firebase))),
-    importProvidersFrom(
-      provideAuth(() => {
-        const auth = getAuth();
-        if (environment.useEmulators) {
-          connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
-        }
-        return auth;
-      })
-    ),
-    importProvidersFrom(
-      provideFirestore(() => {
-        if (environment.useEmulators) {
-          const firestore = initializeFirestore(getApp(), {
-            experimentalForceLongPolling: true,
-          });
-          connectFirestoreEmulator(firestore, 'localhost', 8080);
-          return firestore;
-        }
-        return getFirestore();
-      })
-    ),
-    provideStore(reducers, { metaReducers }),
+    ...FIREBASE_CONFIG,
 
+    importProvidersFrom(NgChartsModule),
+    provideStore(reducers, { metaReducers: metaReducersRoot }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects([AuthEffects, IncomeExpenseEffects, UiEffects]),
   ],

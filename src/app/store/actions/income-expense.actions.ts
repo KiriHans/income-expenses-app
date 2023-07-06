@@ -6,8 +6,18 @@ export const IncomeExpenseActions = createActionGroup({
   events: {
     'Unset Items': emptyProps(),
     'Set Items': props<{ items: IncomeExpense[] }>(),
-    'Create Income expenses': props<{ userId: string; incomeExpense: IncomeExpense }>(),
+    'Set Items Failure': props<{ error: unknown }>(),
+    'Create Income expenses': props<{ incomeExpense: IncomeExpense }>(),
     'Creation success': props<{ incomeExpense: IncomeExpense }>(),
     'Creation failure': props<{ error: unknown }>(),
+  },
+});
+
+export const DetailsActions = createActionGroup({
+  source: 'Details',
+  events: {
+    'delete item': props<{ incomeExpense: IncomeExpense[]; itemId: string }>(),
+    'Deletion completed': emptyProps(),
+    'Deletion error': props<{ incomeExpense: IncomeExpense[]; error: unknown }>(),
   },
 });

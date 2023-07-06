@@ -6,10 +6,5 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export const adminGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
-
-  return authService.isAuth().pipe(
-    tap(console.log),
-    tap(() => console.log('aa')),
-    map((isAuth) => !isAuth || router.createUrlTree(['']))
-  );
+  return authService.isAuth().pipe(map((isAuth) => !isAuth || router.createUrlTree([''])));
 };

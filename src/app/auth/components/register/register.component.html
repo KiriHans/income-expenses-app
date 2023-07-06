@@ -65,6 +65,7 @@
               <button
                 *ngIf="isLoading()"
                 [disabled]="true"
+                type="button"
                 class="btn btn-primary submit-btn btn-block"
               >
                 <i class="fa fa-spin fa-sync"></i>
@@ -74,7 +75,7 @@
             <div class="text-block text-center my-3">
               <span class="text-small font-weight-semibold">¿Ya tienes una nueva cuenta? </span>
               <br />
-              <a routerLink="/login" class="text-black text-small">Login</a>
+              <a routerLink="/auth/login" class="text-black text-small">Login</a>
             </div>
           </form>
         </div>

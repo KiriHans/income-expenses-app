@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas">
+<nav [ngClass]="(isHandset$ | async) ? 'sidebar-mini' : 'sidebar'" class="sidebar-offcanvas">
   <ul class="nav">
     <li class="nav-item nav-profile">
       <div class="nav-link">
@@ -8,9 +8,11 @@
           </div>
 
           <div class="text-wrapper">
-            <p class="profile-name">Cristobal Colón</p>
+            <p class="profile-name">
+              {{ user.displayName }}
+            </p>
             <div>
-              <small class="designation text-muted">Gerente</small>
+              <small class="designation text-muted">Manager</small>
             </div>
           </div>
         </div>

@@ -6,15 +6,17 @@ export const isIncomeExpense = (x: DocumentData | undefined | null): x is Income
     x['description'] !== undefined &&
     x['amount'] !== undefined &&
     x['type'] !== undefined &&
-    x['uid'] !== undefined
+    x['id'] !== undefined
   );
 };
+
+export type IncomeExpenseType = 'income' | 'expense';
 
 export class IncomeExpense {
   constructor(
     public description: string,
     public amount: number,
-    public type: string,
-    public uid?: string | null
+    public type: IncomeExpenseType,
+    public id?: string | null
   ) {}
 }

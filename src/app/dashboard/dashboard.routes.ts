@@ -8,6 +8,5 @@ export default [
     path: '',
     component: DashboardComponent,
     children: INCOME_EXPENSES_ROUTES,
-    canActivate: [authGuard],
   },
 ] satisfies Routes;

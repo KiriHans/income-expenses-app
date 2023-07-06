@@ -5,8 +5,8 @@ import { BROWSER_STORAGE } from '../tokens/browser-storage.token';
 export class BrowserStorageService {
   private storage = inject(BROWSER_STORAGE);
 
-  getItem(key: string): string | null {
-    return this.storage.getItem(key);
+  getItem(key: string): string {
+    return this.storage.getItem(key) || '';
   }
 
   setItem(key: string, value: string): void {

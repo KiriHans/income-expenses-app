@@ -1,0 +1,108 @@
+:host {
+  --nav-width: 255px;
+  --min-nav-width: 75px;
+}
+
+.sidebar {
+  left: -30%;
+  width: var(--nav-width);
+  min-height: calc(100vh - 63px);
+  transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+  -webkit-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+  -moz-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+  -ms-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+}
+
+.sidebar-mini {
+  width: var(--min-nav-width);
+
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  z-index: 11;
+
+  transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+  -webkit-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+  -moz-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+  -ms-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+    margin-left 0.25s ease;
+
+  .nav .nav-item.nav-profile .nav-link {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    padding: 16px 13px;
+
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: auto;
+
+    .user-wrapper {
+      align-items: center;
+      display: flex;
+
+      white-space: nowrap;
+      height: 52px;
+      color: #4a4a4a;
+    }
+
+    .user-wrapper .profile-image {
+      width: 3rem;
+
+      img {
+        border-radius: 100%;
+        max-width: 100%;
+      }
+    }
+
+    .user-wrapper .text-wrapper {
+      white-space: nowrap;
+      margin-left: 1rem;
+
+      .profile-name {
+        white-space: nowrap;
+
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .nav .nav-item .nav-link {
+    align-items: center;
+    display: flex;
+    padding: 16px 18px;
+    white-space: nowrap;
+    height: 52px;
+    color: #4a4a4a;
+
+    .menu-icon {
+      margin-left: 0.625rem;
+      margin-right: 0.625rem;
+      width: 16px;
+      line-height: 1;
+      font-size: 18px;
+      color: #979797;
+      align-items: center;
+    }
+
+    span {
+      padding-left: 1.5rem;
+      transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+        margin-left 0.25s ease;
+      -webkit-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+        margin-left 0.25s ease;
+      -moz-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+        margin-left 0.25s ease;
+      -ms-transition: width 0.25s ease, background 0.25s ease, margin-right 0.25s ease,
+        margin-left 0.25s ease;
+    }
+  }
+}

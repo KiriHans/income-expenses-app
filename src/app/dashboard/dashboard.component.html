@@ -1,11 +1,11 @@
-<app-navbar></app-navbar>
+<app-navbar [user]="user$()" />
 <div class="page-body-wrapper">
-  <app-sidebar></app-sidebar>
+  <app-sidebar [user]="user$()" />
   <div class="main-panel">
     <div class="content-wrapper">
       <router-outlet></router-outlet>
     </div>
 
-    <app-footer></app-footer>
+    <app-footer />
   </div>
 </div>

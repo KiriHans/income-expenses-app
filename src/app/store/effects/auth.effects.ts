@@ -1,24 +1,16 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { of, from } from 'rxjs';
 import { AuthActions, LoginActions, RegisterActions } from '../actions/auth.actions';
-import { Auth } from '@angular/fire/auth';
 import { UserApp, isUser } from 'src/app/core/models/users.model';
 import { AuthService } from '../../auth/services/auth.service';
 import { Router } from '@angular/router';
-import { Firestore } from '@angular/fire/firestore';
-import { UserFirebaseService } from 'src/app/auth/services/user-firebase.service';
 
 @Injectable()
 export class AuthEffects {
-  private afAuth = inject(Auth);
-  private firestore = inject(Firestore);
-  private userFirebaseService = inject(UserFirebaseService);
-
   getUser$ = createEffect(() => {
-    this.userFirebaseService;
     return this.actions$.pipe(
       ofType(AuthActions.getUser),
       switchMap(() =>

@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-6">
+<div class="row row-cols-1">
+  <div class="col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0">
     <div class="card card-statistics">
       <div class="card-body">
         <div class="clearfix">
@@ -9,18 +9,21 @@
           <div class="float-right">
             <p class="mb-0 text-right">Income</p>
             <div class="fluid-container">
-              <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+              <h3 class="font-weight-medium text-right mb-0">
+                {{ this.totalIncome() | currency }}
+              </h3>
             </div>
           </div>
         </div>
         <p class="text-muted mt-3 mb-0">
-          <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+          <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>
+          {{ this.numberIncomeItems() }} items
         </p>
       </div>
     </div>
   </div>
-
-  <div class="col-6">
+  <div class="w-100 d-none d-md-none"></div>
+  <div class="col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0">
     <div class="card card-statistics">
       <div class="card-body">
         <div class="clearfix">
@@ -28,15 +31,63 @@
             <i class="fa fa-shipping-fast text-danger icon-lg"></i>
           </div>
           <div class="float-right">
-            <p class="mb-0 text-right">Income</p>
+            <p class="mb-0 text-right">Expense</p>
             <div class="fluid-container">
-              <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+              <h3 class="font-weight-medium text-right mb-0">
+                {{ this.totalExpense() | currency }}
+              </h3>
             </div>
           </div>
         </div>
         <p class="text-muted mt-3 mb-0">
-          <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+          <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>
+          {{ this.numberExpenseItems() }} items
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-12 pl-0 pl-sm-3 pb-5 pb-md-0">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="fa fa-building text-info icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Difference</p>
+            <div class="fluid-container">
+              <h3
+                [ngClass]="{
+                  'text-success': differenceIncome() > 0,
+                  'text-danger': differenceIncome() < 0
+                }"
+                class="font-weight-medium text-right mb-0"
+              >
+                {{ differenceIncome() | currency }}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col pl-1 pt-5 p-sm-5" *ngIf="totalIncome() > 0 || totalExpense() > 0">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <h1 class="card-title">Graphic</h1>
+        <div style="min-width: 200px" class="w-50 mx-auto">
+          <canvas
+            baseChart
+            class="chart"
+            [data]="this.doughnutChartData()"
+            [type]="this.doughnutChartType"
+          >
+          </canvas>
+        </div>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ import { adminGuard } from '../core/guards/admin.guard';
 
 export default [
   {
-    path: '',
+    path: 'auth',
     canActivate: [adminGuard],
     children: [
       {

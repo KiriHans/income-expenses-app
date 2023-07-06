@@ -15,6 +15,7 @@ import { BrowserStorageService } from 'src/app/core/services/browser-storage.ser
 import { AuthActions } from '../../store/actions/auth.actions';
 import { UserFirebaseService } from './user-firebase.service';
 import { Router } from '@angular/router';
+import { authFeature } from 'src/app/store/reducers/auth.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,8 @@ export class AuthService {
   user$ = this.authState$.pipe(
     switchMap((user) => (user ? this.userFirebaseService.get(user.uid) : of(null)))
   );
+
+  userId$ = this.store.selectSignal(authFeature.selectId);
 
   initAuth(): void {
     if (!window.location.hash) {

@@ -15,11 +15,22 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>Description</td>
-              <td>Amount</td>
-              <td>Type</td>
-              <td>Actions</td>
+            <tr *ngFor="let item of incomeExpenseItems$() | sortIncomeExpense">
+              <td>{{ item.description }}</td>
+              <td>{{ item.amount }}</td>
+              <td
+                [ngClass]="{
+                  'text-success': item.type === 'income',
+                  'text-danger': item.type === 'expense'
+                }"
+              >
+                {{ item.type }}
+              </td>
+              <td>
+                <button (click)="delete(item.id)" type="button" class="btn btn-danger">
+                  Borrar
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
