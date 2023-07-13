@@ -37,7 +37,10 @@ export class AuthEffects {
               user: new UserApp(user.uid, user.displayName, user.email),
             })
           ),
-          catchError((error) => of(LoginActions.loginFailure({ error })))
+          catchError(() => {
+            const error = new Error('Wrong user credentials');
+            return of(LoginActions.loginFailure({ error }));
+          })
         )
       )
     );

@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { DetailsActions, IncomeExpenseActions } from 'src/app/store/actions/income-expense.actions';
+import { LoginActions, RegisterActions } from '../actions/auth.actions';
 
 @Injectable()
 export class UiEffects {
@@ -22,9 +23,11 @@ export class UiEffects {
     () => {
       return this.actions$.pipe(
         ofType(
-          IncomeExpenseActions.creationFailure,
+          RegisterActions.registerFailure,
+          LoginActions.loginFailure,
           DetailsActions.deletionError,
-          IncomeExpenseActions.setItemsFailure
+          IncomeExpenseActions.setItemsFailure,
+          IncomeExpenseActions.creationFailure
         ),
         tap(({ error }) => {
           if (error instanceof Error) {
