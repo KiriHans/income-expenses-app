@@ -1,5 +1,5 @@
 # Income Expense App
-
+This is just a Demo project using NGRX and firebase as the backend.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1, and updated to version 16.1.3.
 The design comes from [StarAdmin-Free-Bootstrap-Admin-Template](https://github.com/BootstrapDash/StarAdmin-Free-Bootstrap-Admin-Template), adapted to work in angular with small fixes.
 ## Development server
