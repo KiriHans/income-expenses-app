@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, concatMap, map, switchMap, take, takeUntil } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, take } from 'rxjs/operators';
 import { from, of } from 'rxjs';
 import { DetailsActions, IncomeExpenseActions } from '../actions/income-expense.actions';
 import { IncomeExpenseService } from 'src/app/income-expense/services/income-expense.service';
@@ -38,7 +38,6 @@ export class IncomeExpenseEffects {
         return this.incomeExpenseService.getAll(user.id || '').pipe(
           take(1),
           map((items) => {
-            console.log('load Items observable', items);
             return IncomeExpenseActions.setItems({ items });
           }),
           catchError((error) => {

@@ -1,5 +1,5 @@
 <div class="row row-cols-1">
-  <div class="col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0">
+  <div class="income-card col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0">
     <div class="card card-statistics">
       <div class="card-body">
         <div class="clearfix">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="w-100 d-none d-md-none"></div>
-  <div class="col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0">
+  <div class="expense-card col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0">
     <div class="card card-statistics">
       <div class="card-body">
         <div class="clearfix">
@@ -49,7 +49,7 @@
 </div>
 
 <div class="row mt-5">
-  <div class="col-12 pl-0 pl-sm-3 pb-5 pb-md-0">
+  <div class="difference-card col-12 pl-0 pl-sm-3 pb-5 pb-md-0">
     <div class="card card-statistics">
       <div class="card-body">
         <div class="clearfix">
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <div class="col pl-1 pt-5 p-sm-5" *ngIf="totalIncome() > 0 || totalExpense() > 0">
+  <div class="graphic-card col pl-1 pt-5 p-sm-5" *ngIf="totalIncome() > 0 || totalExpense() > 0">
     <div class="card card-statistics">
       <div class="card-body">
         <h1 class="card-title">Graphic</h1>

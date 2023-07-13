@@ -11,7 +11,6 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable, map, of, switchMap } from 'rxjs';
 import { UserApp } from 'src/app/core/models/users.model';
-import { BrowserStorageService } from 'src/app/core/services/browser-storage.service';
 import { AuthActions } from '../../store/actions/auth.actions';
 import { UserFirebaseService } from './user-firebase.service';
 import { Router } from '@angular/router';
@@ -24,7 +23,6 @@ export class AuthService {
   private readonly auth = inject(Auth);
   private readonly store = inject(Store);
   private readonly userFirebaseService = inject(UserFirebaseService);
-  private readonly localStorage = inject(BrowserStorageService);
   private readonly router = inject(Router);
 
   private readonly authState$ = authState(this.auth);
@@ -35,9 +33,6 @@ export class AuthService {
   userId$ = this.store.selectSignal(authFeature.selectId);
 
   initAuth(): void {
-    if (!window.location.hash) {
-      this.localStorage.setItem('PATH', window.location.pathname);
-    }
     this.store.dispatch(AuthActions.getUser());
   }
 

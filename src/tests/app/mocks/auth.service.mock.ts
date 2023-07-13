@@ -1,5 +1,5 @@
 import { map, of, shareReplay } from 'rxjs';
-import { guestUserMock, userMock } from './user-data.mock';
+import { guestUserMock } from './user-data.mock';
 import { UserApp } from 'src/app/core/models/users.model';
 
 export class AuthServiceMock {
@@ -10,7 +10,7 @@ export class AuthServiceMock {
     return jest.fn();
   }
 
-  async createUser(name: string, email: string, password: string) {
+  async createUser(name: string, email: string) {
     const newUser = new UserApp(`${new Date().getTime()}`, name, email);
     this.user$ = of(newUser).pipe(shareReplay(1));
   }

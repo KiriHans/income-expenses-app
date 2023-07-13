@@ -2,9 +2,7 @@ import { Component, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IncomeExpense, IncomeExpenseType } from 'src/app/core/models/income-expenses.model';
-import { IncomeExpenseService } from '../services/income-expense.service';
 import { Store } from '@ngrx/store';
-import { authFeature } from 'src/app/store/reducers/auth.reducer';
 import { IncomeExpenseActions } from 'src/app/store/actions/income-expense.actions';
 import { incomeExpenseFeature } from 'src/app/store/reducers/income-expense.reducer';
 
@@ -32,7 +30,7 @@ export class IncomeExpenseComponent implements OnInit {
     this.isLoading = this.store.selectSignal(incomeExpenseFeature.selectLoading);
   }
 
-  save() {
+  save(): void {
     if (this.incomeForm.invalid) return;
 
     const { description, amount } = this.incomeForm.value;

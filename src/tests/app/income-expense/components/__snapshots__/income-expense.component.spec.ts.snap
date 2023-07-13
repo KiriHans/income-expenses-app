@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncomeExpenseComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="row"
+  >
+    <div
+      class="col-12"
+    >
+      <div
+        class="card"
+      >
+        <div
+          class="card-body"
+        >
+          <h4
+            class="card-title"
+          >
+            Add Income / Expenses
+          </h4>
+          <p
+            class="card-description"
+          >
+            Specify amount and type
+          </p>
+          <form
+            class="ng-untouched ng-pristine ng-invalid"
+            novalidate=""
+          >
+            <div
+              class="form-group"
+            >
+              <label
+                for="description"
+              >
+                Description
+              </label>
+              <input
+                class="form-control ng-untouched ng-pristine ng-invalid"
+                formcontrolname="description"
+                name="description"
+                placeholder="Description"
+                type="text"
+              />
+              <p
+                class="pt-2"
+                style="color: rgb(71, 71, 71); font-size: 0.7rem;"
+              >
+                 It must be less than 100 characters. 
+              </p>
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                for="amount"
+              >
+                Amount
+              </label>
+              <input
+                class="form-control ng-untouched ng-pristine ng-invalid"
+                formcontrolname="amount"
+                name="amount"
+                placeholder="Amount"
+                type="number"
+              />
+              <p
+                class="pt-2"
+                style="color: rgb(71, 71, 71); font-size: 0.7rem;"
+              >
+                 It must be a positive amount. 
+              </p>
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                for="type"
+              >
+                Type
+              </label>
+              <br />
+              <button
+                class="btn btn-primary btn-block"
+                type="button"
+              >
+                 Income 
+              </button>
+              
+              
+            </div>
+            <hr />
+            <button
+              class="btn btn-success mr-2"
+              disabled=""
+              type="submit"
+            >
+              <i
+                class="fa fa-save"
+              />
+               Add 
+            </button>
+            
+            
+            <button
+              class="btn btn-light"
+              type="reset"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatisticsComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="row row-cols-1"
+  >
+    <div
+      class="income-card col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0"
+    >
+      <div
+        class="card card-statistics"
+      >
+        <div
+          class="card-body"
+        >
+          <div
+            class="clearfix"
+          >
+            <div
+              class="float-left"
+            >
+              <i
+                class="fa fa-money-bill-alt text-success icon-lg"
+              />
+            </div>
+            <div
+              class="float-right"
+            >
+              <p
+                class="mb-0 text-right"
+              >
+                Income
+              </p>
+              <div
+                class="fluid-container"
+              >
+                <h3
+                  class="font-weight-medium text-right mb-0"
+                >
+                   $300.00 
+                </h3>
+              </div>
+            </div>
+          </div>
+          <p
+            class="text-muted mt-3 mb-0"
+          >
+            <i
+              aria-hidden="true"
+              class="mdi mdi-alert-octagon mr-1"
+            />
+             1 items 
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-100 d-none d-md-none"
+    />
+    <div
+      class="expense-card col col-md-6 pl-0 pl-sm-3 pb-5 pb-md-0"
+    >
+      <div
+        class="card card-statistics"
+      >
+        <div
+          class="card-body"
+        >
+          <div
+            class="clearfix"
+          >
+            <div
+              class="float-left"
+            >
+              <i
+                class="fa fa-shipping-fast text-danger icon-lg"
+              />
+            </div>
+            <div
+              class="float-right"
+            >
+              <p
+                class="mb-0 text-right"
+              >
+                Expense
+              </p>
+              <div
+                class="fluid-container"
+              >
+                <h3
+                  class="font-weight-medium text-right mb-0"
+                >
+                   $400.00 
+                </h3>
+              </div>
+            </div>
+          </div>
+          <p
+            class="text-muted mt-3 mb-0"
+          >
+            <i
+              aria-hidden="true"
+              class="mdi mdi-alert-octagon mr-1"
+            />
+             2 items 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row mt-5"
+  >
+    <div
+      class="difference-card col-12 pl-0 pl-sm-3 pb-5 pb-md-0"
+    >
+      <div
+        class="card card-statistics"
+      >
+        <div
+          class="card-body"
+        >
+          <div
+            class="clearfix"
+          >
+            <div
+              class="float-left"
+            >
+              <i
+                class="fa fa-building text-info icon-lg"
+              />
+            </div>
+            <div
+              class="float-right"
+            >
+              <p
+                class="mb-0 text-right"
+              >
+                Difference
+              </p>
+              <div
+                class="fluid-container"
+              >
+                <h3
+                  class="font-weight-medium text-right mb-0 text-danger"
+                >
+                   -$100.00 
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="graphic-card col pl-1 pt-5 p-sm-5"
+    >
+      <div
+        class="card card-statistics"
+      >
+        <div
+          class="card-body"
+        >
+          <h1
+            class="card-title"
+          >
+            Graphic
+          </h1>
+          <div
+            class="w-50 mx-auto"
+            style="min-width: 200px;"
+          >
+            <canvas
+              basechart=""
+              class="chart"
+              height="0"
+              style="display: block; box-sizing: border-box; height: 0px; width: 0px;"
+              width="0"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+`;

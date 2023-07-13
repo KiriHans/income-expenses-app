@@ -8,12 +8,7 @@
           <form [formGroup]="registerForm" (ngSubmit)="createUser()">
             <div class="form-group">
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre"
-                  formControlName="name"
-                />
+                <input type="text" class="form-control" placeholder="Name" formControlName="name" />
                 <div class="input-group-append">
                   <span class="input-group-text">
                     <i *ngIf="registerForm.get('name')?.valid" class="fa fa-check-circle"></i>
@@ -27,7 +22,7 @@
                 <input
                   type="email"
                   class="form-control"
-                  placeholder="Correo"
+                  placeholder="Email"
                   formControlName="email"
                 />
                 <div class="input-group-append">
@@ -43,7 +38,7 @@
                 <input
                   type="password"
                   class="form-control"
-                  placeholder="Contraseña"
+                  placeholder="Password"
                   formControlName="password"
                 />
                 <div class="input-group-append">
@@ -60,7 +55,7 @@
                 [disabled]="registerForm.invalid"
                 class="btn btn-primary submit-btn btn-block"
               >
-                Crear cuenta
+                Create account
               </button>
               <button
                 *ngIf="isLoading()"
@@ -73,7 +68,7 @@
               </button>
             </div>
             <div class="text-block text-center my-3">
-              <span class="text-small font-weight-semibold">¿Ya tienes una nueva cuenta? </span>
+              <span class="text-small font-weight-semibold">Already have a new account? </span>
               <br />
               <a routerLink="/auth/login" class="text-black text-small">Login</a>
             </div>

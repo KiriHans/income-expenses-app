@@ -13,7 +13,6 @@ import { authFeature } from '../store/reducers/auth.reducer';
   standalone: true,
   imports: [CommonModule, RouterOutlet, FooterComponent, NavbarComponent, SidebarComponent],
   templateUrl: './dashboard.component.html',
-  styles: [],
 })
 export class DashboardComponent implements OnInit {
   user$!: Signal<UserApp>;

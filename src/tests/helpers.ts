@@ -17,16 +17,36 @@ export const createItem = (description: unknown, amount: unknown, type: unknown)
   };
 };
 
-export const setup = async (auth: UserAuth) => {
+interface Options {
+  withRules?: boolean;
+  experimentalForceLongPolling?: boolean;
+}
+
+export const setup = async (
+  auth: UserAuth,
+  { withRules, experimentalForceLongPolling }: Options
+) => {
+  let rules = `service cloud.firestore {
+    match /databases/{database}/documents {
+      match /{documents=**} {
+        allow read, write;
+      }
+    }
+  }`;
+  if (withRules) {
+    rules = fs.readFileSync('firestore.rules', 'utf8');
+  }
   const testEnv = await initializeTestEnvironment({
-    projectId: 'income-expense-app-ac975',
+    projectId: 'project-demo',
     firestore: {
-      rules: fs.readFileSync('firestore.rules', 'utf8'),
+      rules,
     },
   });
 
   const rulesTestContext = testEnv.authenticatedContext(auth.id, { ...auth, uid: undefined });
-  const firebase = rulesTestContext.firestore();
+  const firebase = experimentalForceLongPolling
+    ? rulesTestContext.firestore({ experimentalForceLongPolling })
+    : rulesTestContext.firestore();
 
   return { testEnv, rulesTestContext, firebase };
 };

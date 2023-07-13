@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <app-navbar>
+    <div
+      class="navbar"
+    >
+      test, test@gm.com
+    </div>
+  </app-navbar>
+  <div
+    class="page-body-wrapper"
+  >
+    <app-sidebar>
+      <div
+        class="sidebar"
+      >
+        test, test@gm.com
+      </div>
+    </app-sidebar>
+    <div
+      class="main-panel"
+    >
+      <div
+        class="content-wrapper"
+      >
+        <router-outlet />
+        <app-dumb>
+          <div />
+        </app-dumb>
+        
+      </div>
+      <app-footer>
+        <footer
+          class="footer"
+        >
+          <div
+            class="container-fluid clearfix"
+          >
+            <span
+              class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+            >
+               All rights reserved 
+              <a
+                href=""
+                target="_blank"
+              >
+                KarTilago manjader
+              </a>
+              . 
+            </span>
+            <span
+              class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
+            >
+               Created By 
+              <i
+                class="fa fa-heart text-danger"
+              />
+            </span>
+          </div>
+        </footer>
+      </app-footer>
+    </div>
+  </div>
+</div>
+`;

@@ -1,11 +1,5 @@
 import { RulesTestEnvironment, assertFails, assertSucceeds } from '@firebase/rules-unit-testing';
-import {
-  UserAuth,
-  addDataWithoutRulesFirestore,
-  createItem,
-  setup,
-  teardown,
-} from './src/tests/helpers';
+import { UserAuth, addDataWithoutRulesFirestore, createItem, setup, teardown } from '../helpers';
 import firebase from 'firebase/compat/app';
 
 const currentUserAuth: UserAuth = {
@@ -38,7 +32,7 @@ describe('Firebase security rules', () => {
 
   beforeAll(async () => {
     consoleSpy = jest.spyOn(global.console, 'warn').mockImplementation();
-    ({ testEnv, firebase } = await setup(currentUserAuth));
+    ({ testEnv, firebase } = await setup(currentUserAuth, { withRules: true }));
   });
 
   beforeEach(async () => {

@@ -43,7 +43,7 @@ export class IncomeExpenseService {
     );
   }
 
-  delete(itemId: string) {
+  delete(itemId: string): Promise<void> {
     const userId = this.authService.userId$();
     const itemDocumentReference = doc(
       this.firestore,

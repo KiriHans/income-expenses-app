@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Store } from '@ngrx/store';
 
 import { RegisterActions } from '../../../store/actions/auth.actions';
-import { uiFeature } from 'src/app/store/reducers/ui.reducer';
 import { authFeature } from 'src/app/store/reducers/auth.reducer';
 
 @Component({

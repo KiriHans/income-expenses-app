@@ -14,7 +14,7 @@ import { SortIncomeExpensePipe } from '../../pipes/sort-income-expense.pipe';
   styles: [],
 })
 export class DetailsComponent implements OnInit {
-  public incomeExpenseItems$!: Signal<IncomeExpense[]>;
+  incomeExpenseItems$!: Signal<IncomeExpense[]>;
   isLoading!: Signal<boolean>;
 
   constructor(private store: Store) {}
