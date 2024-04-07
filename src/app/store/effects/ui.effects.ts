@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { DetailsActions, IncomeExpenseActions } from 'src/app/store/actions/income-expense.actions';
 import { LoginActions, RegisterActions } from '../actions/auth.actions';
 
@@ -12,7 +14,7 @@ export class UiEffects {
       return this.actions$.pipe(
         ofType(IncomeExpenseActions.creationSuccess),
         tap(({ incomeExpense }) => {
-          Swal.fire('Item Added', incomeExpense.description, 'success');
+          this.toastr.success('Item Added', incomeExpense.description);
         })
       );
     },
@@ -31,9 +33,9 @@ export class UiEffects {
         ),
         tap(({ error }) => {
           if (error instanceof Error) {
-            Swal.fire('Error', error.message, 'error');
+            this.toastr.error('Item Added', error.message);
           } else {
-            Swal.fire('Error', 'An unknown error has ocurred', 'error');
+            this.toastr.error('Item Added', 'An unknown error has ocurred');
           }
         })
       );
@@ -41,5 +43,5 @@ export class UiEffects {
     { dispatch: false }
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private toastr: ToastrService) {}
 }

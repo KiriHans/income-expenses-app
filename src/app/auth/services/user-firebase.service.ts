@@ -18,7 +18,7 @@ import { userConverter } from 'src/app/core/utils/user-data-converter';
 export class UserFirebaseService {
   private readonly firestore = inject(Firestore);
 
-  get(id: string): Observable<DocumentData> {
+  get(id: string): Observable<DocumentData | undefined> {
     const userDocumentReference = doc(this.firestore, `users`, `${id}`);
     return docData(userDocumentReference, { idField: 'id' });
   }

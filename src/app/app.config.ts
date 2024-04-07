@@ -6,6 +6,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 
@@ -19,18 +20,9 @@ import { IncomeExpenseEffects } from './store/effects/income-expense.effects';
 import { UiEffects } from './store/effects/ui.effects';
 
 import { NgChartsModule } from 'ng2-charts';
+import { provideToastr } from 'ngx-toastr';
 
 import { FIREBASE_CONFIG } from './firebase.config';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import {
-  getAnalytics,
-  provideAnalytics,
-  ScreenTrackingService,
-  UserTrackingService,
-} from '@angular/fire/analytics';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,28 +36,12 @@ export const appConfig: ApplicationConfig = {
     },
     ...FIREBASE_CONFIG,
 
+    provideToastr(),
+    provideAnimations(),
+
     importProvidersFrom(NgChartsModule),
     provideStore(reducers, { metaReducers: metaReducersRoot }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
     provideEffects([AuthEffects, IncomeExpenseEffects, UiEffects]),
-    importProvidersFrom(
-      provideFirebaseApp(() =>
-        initializeApp({
-          projectId: 'income-expense-app-ac975',
-          appId: '1:384856359583:web:c15083fbf81c109c9b58aa',
-          storageBucket: 'income-expense-app-ac975.appspot.com',
-          apiKey: 'AIzaSyDW_5Fz0jxZkHoIaDi3h8n_Sny0c4x8yOo',
-          authDomain: 'income-expense-app-ac975.firebaseapp.com',
-          messagingSenderId: '384856359583',
-          measurementId: 'G-HTT4JYMBEX',
-        })
-      )
-    ),
-    importProvidersFrom(provideAuth(() => getAuth())),
-    importProvidersFrom(provideAnalytics(() => getAnalytics())),
-    ScreenTrackingService,
-    UserTrackingService,
-    importProvidersFrom(provideFirestore(() => getFirestore())),
-    importProvidersFrom(provideRemoteConfig(() => getRemoteConfig())),
   ],
 };

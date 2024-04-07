@@ -47,7 +47,6 @@ export const setup = async (
   const firebase = experimentalForceLongPolling
     ? rulesTestContext.firestore({ experimentalForceLongPolling })
     : rulesTestContext.firestore();
-
   return { testEnv, rulesTestContext, firebase };
 };
 

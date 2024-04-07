@@ -7,6 +7,7 @@ import {
   connectFirestoreEmulator,
   getFirestore,
 } from '@angular/fire/firestore';
+
 import { environment } from 'src/environments/environment';
 
 export const FIREBASE_CONFIG: (Provider | EnvironmentProviders)[] = [
