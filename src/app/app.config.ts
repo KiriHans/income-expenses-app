@@ -36,7 +36,7 @@ export const appConfig: ApplicationConfig = {
 
     importProvidersFrom(NgChartsModule),
     provideStore(reducers, { metaReducers: metaReducersRoot }),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
     provideEffects([AuthEffects, IncomeExpenseEffects, UiEffects]),
   ],
 };
