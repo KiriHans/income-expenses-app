@@ -51,7 +51,7 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(LoginActions.loginSuccess),
         tap(() => {
-          this.router.navigate(['']);
+          this.router.navigate(['dashboard']);
         })
       );
     },
@@ -89,7 +89,7 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(RegisterActions.registerSuccess),
         tap(() => {
-          this.router.navigate(['']);
+          this.router.navigate(['dashboard']);
         })
       );
     },

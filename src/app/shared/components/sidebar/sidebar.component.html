@@ -12,7 +12,7 @@
               {{ user.displayName }}
             </p>
             <div>
-              <small class="designation text-muted">Manager</small>
+              <small class="designation text-muted">Welcome!</small>
             </div>
           </div>
         </div>
@@ -20,34 +20,28 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" routerLink="/">
+      <a class="nav-link" routerLink="/dashboard">
         <i class="menu-icon fa fa-tachometer-alt"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" routerLink="/income-expenses">
+      <a class="nav-link" routerLink="/dashboard/income-expenses">
         <i class="menu-icon fa fa-clipboard-list"></i>
         <span class="menu-title">Income and Expenses</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" routerLink="/detail">
+      <a class="nav-link" routerLink="/dashboard/detail">
         <i class="menu-icon fa fa-table"></i>
         <span class="menu-title">Details</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a
-        role="link"
-        aria-hidden="true"
-        (click)="logOut()"
-        (keyup)="logOut()"
-        class="nav-link cursor"
-      >
+      <a role="link" aria-hidden="true" (click)="logOut()" (keyup)="logOut()" class="nav-link cursor">
         <i class="menu-icon fa fa-sign-out-alt"></i>
         <span class="menu-title">Log out</span>
       </a>
