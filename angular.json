@@ -27,12 +27,22 @@
             "outputPath": "dist/income-expense-app",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
-            "allowedCommonJsDependencies": ["sweetalert2"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -89,28 +99,48 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing", "src/tests/polyfills.ts"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "src/tests/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.spec.json"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {
-            "version": 2,
-            "browserTarget": "income-expense-app:build:production"
-          }
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "income-expense-app:build:production",
+              "serveTarget": "income-expense-app:serve:production"
+            },
+            "development": {
+              "buildTarget": "income-expense-app:build:development",
+              "serveTarget": "income-expense-app:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
   },
   "cli": {
     "analytics": "85cb1121-b186-4d61-8193-419b0c7ad1e1",
-    "schematicCollections": ["@angular-eslint/schematics", "@ngrx/schematics"]
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@ngrx/schematics"
+    ]
   }
 }
