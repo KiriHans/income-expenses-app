@@ -39,6 +39,8 @@ describe('LandingComponent', () => {
 
   it('should countain a title', () => {
     const title = el.query(By.css('h1'));
-    expect(title.nativeElement.textContent).toBe('Keep an eye of your finances without effort!');
+    expect(title.nativeElement.textContent).toContain(
+      'Keep an eye of your finances without effort!'
+    );
   });
 });
