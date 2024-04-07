@@ -1,8 +1,10 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 
 import { LandingComponent } from 'src/app/landing/landing.component';
+import { DumbMockComponent } from '../mocks/dumb.component.mock';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -15,6 +17,7 @@ describe('LandingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LandingComponent],
+      providers: [provideRouter([{ path: 'auth/login', component: DumbMockComponent }])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LandingComponent);
