@@ -14,7 +14,7 @@ export class UiEffects {
       return this.actions$.pipe(
         ofType(IncomeExpenseActions.creationSuccess),
         tap(({ incomeExpense }) => {
-          this.toastr.success('Item Added', incomeExpense.description);
+          this.toastr.success(incomeExpense.description, 'Item Added');
         })
       );
     },
@@ -33,9 +33,9 @@ export class UiEffects {
         ),
         tap(({ error }) => {
           if (error instanceof Error) {
-            this.toastr.error('Item Added', error.message);
+            this.toastr.error(error.message, 'Error');
           } else {
-            this.toastr.error('Item Added', 'An unknown error has ocurred');
+            this.toastr.error('An unknown error has ocurred', 'Error');
           }
         })
       );
